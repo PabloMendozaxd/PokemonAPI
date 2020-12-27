@@ -5,19 +5,18 @@ function renderPokemon(image) {
   $pokemono.setAttribute("src", image);
 }
 
-let chik=choosePokemon('¿Qué pokemon quieres ver?')
+let pokemonWanted = choosePokemon("¿Qué pokemon quieres ver?");
 
 function choosePokemon(value) {
-  return prompt(value)
+  return prompt(value);
 }
 
-fetch("https://pokeapi.co/api/v2/pokemon/"+chik)
+fetch("https://pokeapi.co/api/v2/pokemon/" + pokemonWanted)
   .then((response) => response.json())
   .then((pokemon) => {
     renderPokemon(pokemon.sprites.front_default);
-    console.log(typeof(pokemon))
   })
   .catch(() => {
-    console.log('no wey')
-    //renderMessage("Pokemon no encontrado :(");
+    console.log("no wey");
+    renderMessage("Pokemon no encontrado :(");
   });
